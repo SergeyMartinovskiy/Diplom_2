@@ -2,15 +2,18 @@ from faker import Faker
 
 faker = Faker()
 
-def gen_fake_email(locale="ru_RU"):
+def gen_fake_email():
     email = faker.email
-    return email[:locale]
+    return email
 
 def gen_fake_password(lenght=8):
-    password = faker.password
-    return password[:lenght]
+    password = faker.password(length=lenght)
+    return password.lower()
 
-def gen_fake_name(lenght=8):
-    name = faker.name
-    return name[:lenght]
+def gen_fake_firstname(max_lenght=8):
+    while True:
+        name = faker.first_name()
+        if len(name) <= max_lenght:
+            return name.capitalize()
+
 
