@@ -1,20 +1,21 @@
 import allure
-import requests
-from allure_commons import fixture
-
-from urls import URLS
-from data import gen_fake_password, gen_fake_firstname, gen_fake_email
 import pytest
+
+from data import gen_user_data
+from base_api import BaseApi
 
 @allure.title('Создание пользователя. Болванка')
 @pytest.fixture(scope='function')
 def create_user():
-    payload = {
-        'email': gen_fake_email(),
-        'password': gen_fake_password(),
-        'name': gen_fake_firstname()
-    }
-    response = requests.post(URLS.URL_CREATE_USERS, data = payload)
+    creating_user_data = gen_user_data()
+    BaseApi.create_user(**creating_user_data)
 
-    yield response
+    yield creating_user_data['email'], creating_user_data['password'], creating_user_data['name']
+
+    response = BaseApi.login_user(creating_user_data['email'], creating_user_data['password'])
+    BaseApi.delete_user(response.json()['accessToken'])
+
+
+
+
 

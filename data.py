@@ -3,7 +3,7 @@ from faker import Faker
 faker = Faker()
 
 def gen_fake_email():
-    email = faker.email
+    email = faker.email()
     return email
 
 def gen_fake_password(lenght=8):
@@ -15,5 +15,13 @@ def gen_fake_firstname(max_lenght=8):
         name = faker.first_name()
         if len(name) <= max_lenght:
             return name.capitalize()
+
+def gen_user_data():
+    return {
+            'email': gen_fake_email(),
+            'password': gen_fake_password(),
+            'name': gen_fake_firstname()
+           }
+
 
 
