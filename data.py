@@ -3,8 +3,9 @@ from faker import Faker
 faker = Faker()
 
 def gen_fake_email():
+    base_email = 'tester'
     email = faker.email()
-    return email
+    return f'{base_email}_{email}'
 
 def gen_fake_password(lenght=8):
     password = faker.password(length=lenght)

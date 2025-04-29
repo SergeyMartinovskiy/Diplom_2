@@ -5,7 +5,6 @@ from urls import URLS
 
 class BaseApi:
 
-
     @staticmethod
     @allure.title('Создание пользователя')
     def create_user(email, password, name):
@@ -14,7 +13,6 @@ class BaseApi:
                 'name': name}
         return requests.post(URLS.URL_CREATE_USERS, json=data)
 
-
     @staticmethod
     @allure.title('Регистрация пользователя')
     def login_user(email, password):
@@ -22,7 +20,6 @@ class BaseApi:
                 "password":password
                 }
         return requests.post(URLS.URL_LOGIN_USERS, json=data)
-
 
     @staticmethod
     @allure.title('Удаление пользователя')
