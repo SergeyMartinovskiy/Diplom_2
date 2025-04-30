@@ -41,6 +41,7 @@ class TestCreateUser:
         print(f"Response Body: {response_1.json()}")
 
         assert response_1.status_code == 403
+        assert 'User already exists' in response_1.json().get('message')
 
     @allure.title('Проверка получения ошибки 403 при создании пользователя с незаполненным одним из полей')
     @pytest.mark.parametrize('empty_necessary_field', ["email", 'password', 'name'])
@@ -56,6 +57,7 @@ class TestCreateUser:
         print(f"Response Body: {response.json()}")
 
         assert response.status_code == 403
+        assert 'Email, password and name are required fields' in response.json().get('message')
 
 
 
