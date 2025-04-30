@@ -12,7 +12,7 @@ class TestCreateUser:
     def test_valid_create_user(self):
         data = gen_user_data()
 
-        response = BaseApi.create_user(**data)
+        response = BaseApi.create_new_user(**data)
 
         print(f"Request URL: {response.url}")
         print(f"Request Body: {response.request.body}")

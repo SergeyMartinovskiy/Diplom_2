@@ -7,7 +7,7 @@ class BaseApi:
 
     @staticmethod
     @allure.title('Создание пользователя')
-    def create_user(email, password, name):
+    def create_new_user(email, password, name):
         data = {'email': email,
                 "password":password,
                 'name': name}
