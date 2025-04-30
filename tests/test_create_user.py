@@ -3,16 +3,16 @@ import pytest
 
 
 from base_api import BaseApi
+from data import gen_user_data
 
-from conftest import create_user
 
 class TestCreateUser:
     @allure.title('Проверка создания уникального пользователя, возврат ответа код 200')
 
-    def test_valid_create_user(self, create_user):
-        email, password, name = create_user
+    def test_valid_create_user(self):
+        data = gen_user_data()
 
-        response = BaseApi.create_user(email=email, password=password, name=name)
+        response = BaseApi.create_user(**data)
 
         print(f"Request URL: {response.url}")
         print(f"Request Body: {response.request.body}")
@@ -20,6 +20,7 @@ class TestCreateUser:
         print(f"Response Body: {response.json()}")
 
         assert response.status_code == 200
+        assert "accessToken" in response.json()
 
 
 

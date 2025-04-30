@@ -20,7 +20,7 @@ def create_user():
     yield creating_user_data['email'], creating_user_data['password'], creating_user_data['name']
 
     delete_response = BaseApi.delete_user(token)
-    assert delete_response.status_code == 200
+    assert delete_response.status_code == 202
 
 
 
