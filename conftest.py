@@ -9,7 +9,7 @@ from base_api import BaseApi
 def create_user():
     creating_user_data = gen_user_data()
 
-    response = BaseApi.create_user(**creating_user_data)
+    response = BaseApi.create_new_user(**creating_user_data)
 
     assert response.status_code == 200, f'ОШИБКА!!!'
 
