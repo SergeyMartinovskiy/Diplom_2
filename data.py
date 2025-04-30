@@ -1,9 +1,10 @@
 from faker import Faker
+import random
 
 faker = Faker()
 
 def gen_fake_email():
-    base_email = 'tester'
+    base_email = f'tester{random.randint(1,10000)}'
     email = faker.email()
     return f'{base_email}_{email}'
 
