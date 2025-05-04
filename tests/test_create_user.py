@@ -22,6 +22,11 @@ class TestCreateUser:
         assert response.status_code == 200
         assert "accessToken" in response.json()
 
+        token = response.json().get('accessToken')
+        delete_response = BaseApi.delete_user(token)
+        assert delete_response.status_code == 202
+
+
     @allure.title('Проверка невозможности создания пользователя с существующими данными')
     def test_try_create_user_already_exist(self):
         data = gen_user_data()
@@ -42,6 +47,8 @@ class TestCreateUser:
 
         assert response_1.status_code == 403
         assert 'User already exists' in response_1.json().get('message')
+
+
 
     @allure.title('Проверка получения ошибки 403 при создании пользователя с незаполненным одним из полей')
     @pytest.mark.parametrize('empty_necessary_field', ["email", 'password', 'name'])
