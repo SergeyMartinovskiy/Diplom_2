@@ -27,5 +27,10 @@ class BaseApi:
         headers = {'Authorization': token}
         return requests.delete(URLS.URL_DELETE_USERS, headers=headers)
 
+    @staticmethod
+    @allure.title('Изменение данных пользователя')
+    def change_date_user(token, **data):
+        headers = {'Authorization': token}
+        return requests.patch(URLS.URL_UPDATE_USERS, json=data, headers=headers)
 
 
