@@ -33,4 +33,14 @@ class BaseApi:
         headers = {'Authorization': token}
         return requests.patch(URLS.URL_UPDATE_USERS, json=data, headers=headers)
 
+    @staticmethod
+    @allure.title('Создание заказа')
+    def make_order(token, ingredients):
+        data = {'ingredients': ingredients}
+        headers = {'Authorization': token}
+        return requests.post(URLS.URL_CREATE_ORDER, json = data, headers=headers)
 
+    @staticmethod
+    @allure.title('Получение списка заказов')
+    def get_ingredients():
+        return requests.get(URLS.URL_GET_INGREDIENTS)

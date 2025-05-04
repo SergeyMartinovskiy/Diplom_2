@@ -1,5 +1,6 @@
 from faker import Faker
 import random
+from random import sample
 
 faker = Faker()
 
@@ -25,5 +26,9 @@ def gen_user_data():
             'name': gen_fake_firstname()
            }
 
+def generator_data_of_order(ingredients, max_ingredients = 4):
+    available_ids = [ing['_id'] for ing in ingredients if '_id' in ing]
+    count = min (max_ingredients, len(available_ids))
+    return sample (available_ids, count)
 
 
