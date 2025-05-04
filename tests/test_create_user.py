@@ -1,7 +1,6 @@
 import allure
 import pytest
 
-
 from base_api import BaseApi
 from data import gen_user_data
 
