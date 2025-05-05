@@ -44,3 +44,10 @@ class BaseApi:
     @allure.title('Получение списка заказов')
     def get_ingredients():
         return requests.get(URLS.URL_GET_INGREDIENTS)
+
+    @staticmethod
+    @allure.title('')
+    def getting_orders_user(token):
+        headers = {'Authorization': token}
+        return requests.get(URLS.URL_GET_ORDERS, headers = headers)
+

@@ -1,4 +1,5 @@
-
+# да,  видел, что эндпойнты повторяются,
+# но оставил для большей независимости друг от друга
 
 class URLS:
     URL = 'https://stellarburgers.nomoreparties.site/'
@@ -8,6 +9,9 @@ class URLS:
     URL_UPDATE_USERS = f'{URL}api/auth/user'
     URL_DELETE_USERS = f'{URL}api/auth/user'
     URL_GET_INGREDIENTS = f'{URL}api/ingredients'
+    URL_GET_ORDERS = f'{URL}api/orders'
+
+
 
 
 
