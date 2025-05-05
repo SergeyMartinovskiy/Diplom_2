@@ -1,6 +1,6 @@
 import  allure
 import pytest
-
+import requests
 from base_api import BaseApi
 from data import generator_data_of_order
 from data import gen_user_data
@@ -50,6 +50,18 @@ class TestMakeOrder:
 
     @allure.title('Проверка возможности создания заказа с неверным хэшем ингредиентов')
     def test_make_order_with_invalid_hash(self):
+        data = gen_user_data()
+        response = BaseApi.create_new_user(**data)
+        BaseApi.login_user(email=data['email'], password=data['password'])
+
+        token = response.json().get('accessToken')
+
+        invalid_ingredients = ['60d3b41abdacab0026a733', '60d3b41abdacab0026a733c89']
+
+        response_2 = BaseApi.make_order(token = token, ingredients = invalid_ingredients)
+
+        assert response_2.status_code == 500
+
 
 
 
