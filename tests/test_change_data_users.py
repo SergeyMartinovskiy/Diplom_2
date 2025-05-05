@@ -24,7 +24,6 @@ class TestChangeDataUser:
     def test_succesfull_change_data_user(self, update_type):
         data = gen_user_data()
         BaseApi.create_new_user(**data)
-
         response_1 = BaseApi.login_user(email=data['email'], password=data['password'])
         token = response_1.json()['accessToken']
 
@@ -35,9 +34,7 @@ class TestChangeDataUser:
             update_data['name'] = 'NewSerg'
 
         response_update = BaseApi.change_date_user(token, **update_data)
-
         assert response_update.status_code == 200
-
         delete_response = BaseApi.delete_user(token)
         assert delete_response.status_code == 202
 
