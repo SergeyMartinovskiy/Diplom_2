@@ -48,6 +48,8 @@ class TestMakeOrder:
         assert response_2.status_code == 400
         assert 'Ingredient ids must be provided' in response_2.json().get('message')
 
+    @allure.title('Проверка возможности создания заказа с неверным хэшем ингредиентов')
+    def test_make_order_with_invalid_hash(self):
 
 
 

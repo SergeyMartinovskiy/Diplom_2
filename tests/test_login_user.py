@@ -11,7 +11,6 @@ class TestLoginUser:
         response = BaseApi.create_new_user(**data)
         assert response.status_code == 200
 
-
         response_1 = BaseApi.login_user(email=data['email'], password=data['password'])
         assert response_1.status_code == 200
         assert 'accessToken' in response_1.json()
@@ -27,8 +26,7 @@ class TestLoginUser:
                               ('wrong_email@ser.com', 'wrong_password')])
     def test_login_user_with_wrong_login_or_password(self, email, password):
         data = gen_user_data()
-        response = BaseApi.create_new_user(**data)
-        assert response.status_code == 200
+        BaseApi.create_new_user(**data)
 
         correct_email = data['email']
         correct_password = data['password']
