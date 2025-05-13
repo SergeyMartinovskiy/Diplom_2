@@ -17,8 +17,11 @@ def create_user():
     assert response_1.status_code == 200
     token = response_1.json().get('accessToken')
 
-    yield creating_user_data['email'], creating_user_data['password'], creating_user_data['name']
-
+    yield {'email':creating_user_data['email'],
+           'password':creating_user_data['password'],
+           'name':creating_user_data['name'],
+           'token': token
+           }
     delete_response = BaseApi.delete_user(token)
     assert delete_response.status_code == 202
 
